@@ -1,4 +1,4 @@
-package questao3;
+package questao4;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,26 +16,13 @@ public class Main {
         for (int i = 0; i < 5; i++) {
             do {
                 System.out.print("Insira o " + (i + 1) +  "º animal: ");
-                String nomeAnimal = sc.next();
-                t2 = nomesAnimais.iterator();
-                if (nomesAnimais.isEmpty()) {
+                String nomeAnimal = sc.next().toLowerCase();
+
+                if (nomesAnimais.contains(nomeAnimal)) {
+                    System.out.println("Animal já inserido!!");
+                } else {
                     nomesAnimais.add(nomeAnimal);
                     valorCorreto = true;
-                } else {
-                    while (t2.hasNext()) {
-                        String animal = "";
-                        for (int j = 0; j < nomesAnimais.size(); j++) {
-                            animal = t2.next();
-                        }
-
-                        if (animal.equalsIgnoreCase(nomeAnimal)) {
-                            System.out.println("Animal já inserido! Insira um diferente.");
-                        } else {
-                            nomesAnimais.add(nomeAnimal);
-                            valorCorreto = true;
-                            break;
-                        }
-                    }
                 }
             } while (!valorCorreto);
 

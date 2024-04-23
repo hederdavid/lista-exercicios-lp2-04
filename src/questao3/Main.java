@@ -1,4 +1,4 @@
-package questao4;
+package questao3;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,34 +8,20 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Collection<String> nomesAnimais = new ArrayList<>();
-        Collection<String> nomesAnimaisCincoLetrasOuMaior = new ArrayList<>();
-        Iterator<String> t2 = null;
+        ArrayList<String> nomesAnimais = new ArrayList<>();
+        ArrayList<String> nomesAnimaisCincoLetrasOuMaior = new ArrayList<>();
         boolean valorCorreto = false;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             do {
                 System.out.print("Insira o " + (i + 1) +  "º animal: ");
-                String nomeAnimal = sc.next();
-                t2 = nomesAnimais.iterator();
-                if (nomesAnimais.isEmpty()) {
+                String nomeAnimal = sc.next().toLowerCase();
+
+                if (nomesAnimais.contains(nomeAnimal)) {
+                    System.out.println("Animal já inserido!!");
+                } else {
                     nomesAnimais.add(nomeAnimal);
                     valorCorreto = true;
-                } else {
-                    while (t2.hasNext()) {
-                        String animal = "";
-                        for (int j = 0; j < nomesAnimais.size(); j++) {
-                            animal = t2.next();
-                        }
-
-                        if (animal.equalsIgnoreCase(nomeAnimal)) {
-                            System.out.println("Animal já inserido! Insira um diferente.");
-                        } else {
-                            nomesAnimais.add(nomeAnimal);
-                            valorCorreto = true;
-                            break;
-                        }
-                    }
                 }
             } while (!valorCorreto);
 
@@ -44,11 +30,14 @@ public class Main {
 
         Iterator<String> t1 = nomesAnimais.iterator();
 
-        while (t1.hasNext()) {
-            String animal = t1.next();
-            if (animal.length() >= 5) {
-                nomesAnimaisCincoLetrasOuMaior.add(animal);
-                t1.remove();
+        int qtd = nomesAnimais.size();
+
+        for (int i = 0; i < qtd; i++) {
+            if (nomesAnimais.get(i).length() >= 5) {
+                nomesAnimaisCincoLetrasOuMaior.add(nomesAnimais.get(i));
+                nomesAnimais.remove(i);
+                i--;
+                qtd--;
             }
         }
 
